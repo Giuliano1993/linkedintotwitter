@@ -18,10 +18,10 @@
                 "restore": {
                     "parameters": {
                         "hook": {
+                            "label": "Webhoook2",
                             "data": {
                                 "editable": "true"
-                            },
-                            "label": "Webhoook2"
+                            }
                         }
                     }
                 },
@@ -37,7 +37,22 @@
                         "type": "number",
                         "label": "Maximum number of results"
                     }
-                ]
+                ],
+                "interface": [
+                    {
+                        "name": "Text",
+                        "type": "text"
+                    },
+                    {
+                        "name": "LangFrom",
+                        "type": "text"
+                    },
+                    {
+                        "name": "LangoTo",
+                        "type": "text"
+                    }
+                ],
+                "advanced": true
             }
         },
         {
@@ -48,10 +63,10 @@
                 "__IMTCONN__": 1927052
             },
             "mapper": {
-                "model": "text-davinci-003",
-                "prompt": "Given a post in Italian, split it in multiple shorter texts, suitable for twitter. The shorter text must be written in english.\nAnswer with only the tweets organized in a table. Don't write anything else but the table with the tweets inside. The table shall be written in html\nThe post follows: {{17.Text}}",
                 "select": "prompt",
-                "max_tokens": "2000"
+                "max_tokens": "2000",
+                "model": "text-davinci-003",
+                "prompt": "Given a post in {{17.LangFrom}}, split it in multiple shorter texts, suitable for twitter. The shorter text must be written in {{17.LangoTo}}.\nAnswer with only the tweets organized in a table. Don't write anything else but the table with the tweets inside. The table shall be written in html\nThe post follows: {{17.Text}}"
             },
             "metadata": {
                 "designer": {
@@ -59,28 +74,28 @@
                     "y": -293
                 },
                 "restore": {
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "label": "Basic Connection",
+                            "data": {
+                                "scoped": "true",
+                                "connection": "openai-gpt-3"
+                            }
+                        }
+                    },
                     "expect": {
+                        "select": {
+                            "label": "Create a Prompt Completion"
+                        },
                         "echo": {
+                            "mode": "chose"
+                        },
+                        "additionalParameters": {
                             "mode": "chose"
                         },
                         "model": {
                             "mode": "chose",
                             "label": "text-davinci-003"
-                        },
-                        "select": {
-                            "label": "Create a Prompt Completion"
-                        },
-                        "additionalParameters": {
-                            "mode": "chose"
-                        }
-                    },
-                    "parameters": {
-                        "__IMTCONN__": {
-                            "data": {
-                                "scoped": "true",
-                                "connection": "openai-gpt-3"
-                            },
-                            "label": "Basic Connection"
                         }
                     }
                 },
@@ -132,6 +147,8 @@
                     },
                     {
                         "name": "additionalParameters",
+                        "type": "array",
+                        "label": "Other Input Parameters",
                         "spec": [
                             {
                                 "name": "key",
@@ -202,9 +219,7 @@
                                     }
                                 ]
                             }
-                        ],
-                        "type": "array",
-                        "label": "Other Input Parameters"
+                        ]
                     },
                     {
                         "name": "model",

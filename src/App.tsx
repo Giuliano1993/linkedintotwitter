@@ -2,8 +2,6 @@
 import './App.css'
 import axios from 'axios';
 import { useState } from 'react';
-/*import dotenv from 'dotenv';
-const process = dotenv.config();*/
 
 
 interface Errors {
@@ -78,19 +76,19 @@ function App() {
         <div className='flex items-center justify-around'>
           <div>
             <label htmlFor="langFrom" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Language From</label>  
-            <select id="langFrom" onChange={(e)=>setLangFrom(e.target.value)}>
+            <select id="langFrom" onChange={(e)=>setLangFrom(e.target.value)} defaultValue={langFrom}>
               {languages.map((val)=>{
-                const selected = val === langFrom; 
-                return <option value={val} selected={selected}>{val.charAt(0).toUpperCase() + val.slice(1)  }</option>
+                
+                return <option key={'from'+val} value={val} >{val.charAt(0).toUpperCase() + val.slice(1)  }</option>
               })}
             </select>
           </div>
           <div>
             <label htmlFor="langTo" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Language To</label>  
-            <select id="langTo" onChange={(e)=>setLangTo(e.target.value)}>
+            <select id="langTo" onChange={(e)=>setLangTo(e.target.value)} defaultValue={langTo}>
               {languages.map((val)=>{
-                const selected = val === langTo; 
-                return <option value={val} selected={selected}>{val.charAt(0).toUpperCase() + val.slice(1)
+                
+                return <option key={'to'+val} value={val} >{val.charAt(0).toUpperCase() + val.slice(1)
                 }</option>
               })}
             </select>
@@ -101,7 +99,10 @@ function App() {
         {errors.post ? (
           <p className="text-red-800">{errors.post}</p>
         ):("")}
-        <button className='bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded' onClick={event => sendToWebhook(event)}>Invia</button>
+        <div class="mt-3">
+          <button className='bg-transparent transition-all duration-200 mr-3 hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded' onClick={event => sendToWebhook(event)}>Invia</button>
+          <a className='bg-transparent transition-all duration-200 hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded' href="./blueprint.json" download rel="noopener noreferrer" target="_blank"> Download Make Blueprint </a>
+        </div>
       </div>
     </>
   )

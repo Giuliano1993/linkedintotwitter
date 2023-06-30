@@ -1,7 +1,7 @@
 
 import './App.css'
-import axios, { AxiosResponse } from 'axios';
-import { ReactNode, useState } from 'react';
+import axios from 'axios';
+import { useState } from 'react';
 import Tweet from './components/Tweet';
 import LanguageSelect from './components/LanguageSelect';
 
@@ -60,7 +60,7 @@ function App() {
   }
 
 
-  const handlePostChange = function(e: React.ChangeEvent<HTMLInputElement>){
+  const handlePostChange = function(e: React.ChangeEvent<HTMLTextAreaElement>){
     setPost(e.target.value);
   }
 
@@ -80,7 +80,7 @@ function App() {
           <LanguageSelect fieldLabel="Language To" fieldName='langTo' defaultLang={langTo} changeHandler={setLangTo}/>
         </div>
         <label htmlFor="message" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your long post</label>
-        <textarea value={post} onChange={event => handlePostChange(event)} id="message" rows="10" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your thoughts here..." />
+        <textarea value={post} onChange={event => handlePostChange(event)} id="message" rows={10} className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your thoughts here..." />
         {errors.post ? (
           <p className="text-red-800">{errors.post}</p>
         ):("")}
@@ -94,7 +94,7 @@ function App() {
         </div>
         ) : (
           <div className="mt-3">
-            <button className='bg-white transition-all duration-200 mr-3 hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded' onClick={event => sendToWebhook(event)}>Invia</button>
+            <button className='bg-white transition-all duration-200 mr-3 hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded' onClick={() => sendToWebhook()}>Invia</button>
             <a className='bg-white transition-all duration-200 hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded' href="./blueprint.json" download rel="noopener noreferrer" target="_blank"> Download Make Blueprint </a>
           </div>
         ) }

@@ -28,8 +28,7 @@ function App() {
     langTo: false
   });
   const sendToWebhook = function(){
-
-    console.log(import.meta.env)
+    //console.log(import.meta.env)
     if(!post){
       const actualErrors = {...errors}
       actualErrors.post = "There is no post"

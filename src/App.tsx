@@ -35,7 +35,7 @@ function App() {
       return
     }
     setIsLoading(true);
-    axios.post(import.meta.env.VITE_WEBHOOK,
+    axios.post("https://hook.eu1.make.com/fsf15opa335mft337yce67a5pdgn1lmg",
       {
         'Text': post ,
         'LangFrom': langFrom,

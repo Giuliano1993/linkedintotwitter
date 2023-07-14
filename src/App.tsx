@@ -28,6 +28,7 @@ function App() {
     langTo: false
   });
   const sendToWebhook = function(){
+    
     if(!post){
       const actualErrors = {...errors}
       actualErrors.post = "There is no post"
@@ -35,11 +36,11 @@ function App() {
       return
     }
     setIsLoading(true);
-    axios.post(import.meta.env.VITE_WEBHOOK,
+    axios.post('/.netlify/functions/callWebhook',
       {
-        'Text': post ,
-        'LangFrom': langFrom,
-        'LangoTo': langTo
+        'post': post ,
+        'langFrom': langFrom,
+        'langTo': langTo
       }
     ).then((res )=>{
       setIsLoading(false);

@@ -22,7 +22,7 @@ function Tweet(props: TweetProps) {
         }, 1500);
     }
     return(
-        <li  className={`pb-3 sm:pb-4 cursor-pointer px-2 py-2 ${savedText.length > 0 ? "text-green-700" : ""}`} onClick={()=>copyTweet()}>{shownText}</li>
+        <li  className={`pb-3 sm:pb-4 cursor-pointer px-2 py-2 hover:bg-indigo-100 ${savedText.length > 0 ? "text-green-700" : ""}`} onClick={()=>copyTweet()}>{shownText}</li>
     )
 }
 

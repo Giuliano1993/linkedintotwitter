@@ -67,12 +67,14 @@ function App() {
       <div className="flex items-center justify-center h-[90vh] flex-col px-5   bg-white bg-opacity-20 backdrop-blur-lg rounded drop-shadow-lg">
           
 
-        <div className="flex">
+        <div className="flex mt-auto">
             <img src="https://cdn.worldvectorlogo.com/logos/linkedin-icon-2.svg" width="40px"/>
               <h1 className="mb-4 mx-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Linkedin Posts to Tweets</h1>
             <img src="https://cdn.worldvectorlogo.com/logos/twitter-6.svg" width="40px"/>
-          </div>
+        </div>
             <p>Convert your long Linkedin posts into many small tweets you can use <b>anytime</b></p>
+            <p>This platform uses chatGPT and <a className="underline text-gray-800" href="https://www.make.com/en">Make.com</a> automation tool. You can download the blueprint to make your own version of this small app.</p>
+            <p>Hope you find this small tool useful as i do ❤️</p>
         <div className='flex items-center justify-around w-full mt-2 mb-2'>
           <LanguageSelect fieldLabel="Language From" fieldName='langFrom' defaultLang={langFrom} changeHandler={setLangFrom}/>
           <LanguageSelect fieldLabel="Language To" fieldName='langTo' defaultLang={langTo} changeHandler={setLangTo}/>
@@ -91,7 +93,7 @@ function App() {
             <span className="sr-only">Loading...</span>
         </div>
         ) : (
-          <div className="mt-3 flex items-around">
+          <div className="mt-3  flex items-around">
             <button className='bg-white transition-all duration-200 mr-3 hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded' onClick={() => sendToWebhook()}>Invia</button>
             <a className='bg-white transition-all duration-200 hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded' href="./blueprint.json" download rel="noopener noreferrer" target="_blank"> Download Make Blueprint </a>
             <a href="https://www.buymeacoffee.com/ghostylab" target="_blank" className="ml-3">
@@ -101,14 +103,16 @@ function App() {
         ) }
         { tweets.length > 0 ? (
           <div>
-            <ul className="w-full divide-y divide-gray-200 dark:divide-gray-700 rounded bg-white mt-3">
+            <ul className="w-full divide-y divide-gray-200 dark:divide-gray-700 rounded bg-white mt-3 mb-3">
             {
               [...tweets].map((t,i)=><Tweet key={i} tweet={t}/>)
             }
             </ul>
           </div>
         ) : ("")}
-        
+        <div className="font-bold mt-auto mb-2 text-base text-white">
+          Built with ❤️ by <a className='text-teal-100' href="https://ghostylab.com">Giuliano Gostinfini</a>
+        </div>
       </div>
     </>
   )
